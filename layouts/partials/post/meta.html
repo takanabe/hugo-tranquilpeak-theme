@@ -5,6 +5,12 @@
         {{ partial "internal/date.html" . }}
       </time>
     {{ end }}
-    {{ partial "post/category.html" . }}
+    <!-- add reading time -->
+    <text> &nbsp; | &nbsp; {{ .ReadingTime }} min read</text>
+
+    <!-- add categories if page contains them -->
+    {{ if .Params.categories }}
+      <text> &nbsp; | &nbsp; {{ partial "post/category.html" . }} </text>
+    {{ end }}
   </div>
 {{ end }}
