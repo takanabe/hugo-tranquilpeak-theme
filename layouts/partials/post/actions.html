@@ -60,6 +60,11 @@
               <a class="post-action-btn btn btn--default" target="new" href="{{ printf .url $.Permalink $.Title}}">
                 <i class="fa {{ .icon }}"></i>
               </a>
+            {{ else if (eq .name "Hatena") }}
+            {{ $url := urls.Parse ($.Permalink) }}
+            <a class="post-action-btn btn btn--default" target="new" href="{{ printf .url $url.Host $url.Path}}">
+              <i class="fa {{ .icon }}"></i>
+            </a>
             {{ else  }}
               <a class="post-action-btn btn btn--default" target="new" href="{{ printf .url $.Permalink }}">
                 <i class="fa {{ .icon }}"></i>
