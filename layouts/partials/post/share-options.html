@@ -7,6 +7,11 @@
         <a class="share-option-btn" target="new" href="{{ printf .url (substr (querify "x" $.Permalink) 2) (substr (querify "x" $.Title) 2) }}">
           <i class="fa {{ .icon }}"></i><span>{{ printf (i18n "global.share_on") .name }}</span>
         </a>
+        {{ else if (eq .name "Hatena") }}
+        {{ $url := urls.Parse ($.Permalink) }}
+        <a class="share-option-btn" target="new" href="{{ printf .url $url.Host $url.Path}}">
+          <i class="fa {{ .icon }}"></i><span>{{ printf (i18n "global.share_on") .name }}</span>
+        </a>
         {{ else }}
         <a class="share-option-btn" target="new" href="{{ printf .url (substr (querify "x" $.Permalink) 2) }}">
           <i class="fa {{ .icon }}"></i><span>{{ printf (i18n "global.share_on") .name }}</span>
