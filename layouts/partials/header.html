@@ -1,8 +1,14 @@
+{{ $curLanguageName := .Site.Language.LanguageName }}
 <header id="header" data-behavior="{{ .Scratch.Get "sidebarBehavior" }}">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
     <a class="header-title-link" href="{{ "/" | relLangURL }}">{{ .Site.Title }}</a>
   </div>
+ {{ range .Site.Languages -}}
+  {{ if ne .LanguageName $curLanguageName }}
+    <a class="header-lang-switch" href="/{{ .Lang }}/">{{ .LanguageName }}</a>
+  {{ end }}
+  {{ end }}
   {{ with .Site.Params.header.rightLink }}
     {{ if and (in .url ":") (not (in .url (printf "%s" $.Site.BaseURL))) }}
       <a class="{{ if .icon }}header-right-icon {{ else }}header-right-picture {{ end }}{{ with .class }}{{ . }}{{ end }}"
