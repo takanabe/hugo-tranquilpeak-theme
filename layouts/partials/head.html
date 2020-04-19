@@ -60,5 +60,8 @@
     {{ else }}
       {{ template "_internal/google_analytics.html" . }}
     {{ end }}
+    {{- if .Scratch.Get "isPost" -}}
+      {{ partial "head_for_post.html" . }}
+    {{- end -}}
     {{ partial "head_end.html" . }}
   </head>
